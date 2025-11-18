@@ -26,6 +26,7 @@ Webサイトのお問い合わせフォームを自動的に見つけて、フ�
 
 - Node.js 18以上
 - yarn または npm
+- OpenAI APIキー（GPT-5系モデルが利用可能なプラン）
 
 ### インストール
 
@@ -38,6 +39,16 @@ npm install
 # Playwrightブラウザのインストール
 npx playwright install chromium
 ```
+
+### 環境変数
+
+- `docs/env.example` を `.env.local` にコピーし、Supabase/Playwright/OpenAI などのキーを設定してください。
+- 主要な環境変数
+  - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `SUPABASE_SERVICE_ROLE_KEY`
+  - `SUPABASE_JWT_SECRET`
+  - `PLAYWRIGHT_QUEUE_ID`, `PLAYWRIGHT_WORKER_URL`
+  - `OPENAI_API_KEY`
 
 ### 開発サーバーの起動
 

@@ -85,8 +85,10 @@ export async function autoSubmit(payload: Payload): Promise<Result> {
     await page.waitForTimeout(2000);
     const finalUrl = page.url();
     return { success: submitted, logs, finalUrl };
-  } catch (e: any) {
-    log(`Error: ${e?.message ?? String(e)}`);
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : String(error ?? 'Unknown error');
+    log(`Error: ${message}`);
     return { success: false, logs, finalUrl: page?.url() };
   } finally {
     if (browser) await browser.close();

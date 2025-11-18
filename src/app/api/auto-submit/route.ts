@@ -37,8 +37,9 @@ export async function POST(req: NextRequest) {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (error: any) {
-    const msg = error?.message ?? String(error);
+  } catch (error: unknown) {
+    const msg =
+      error instanceof Error ? error.message : String(error ?? 'Unknown error');
     return new Response(
       JSON.stringify({ success: false, logs: ['Server error', msg] }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
