@@ -2,7 +2,7 @@ import { cache } from 'react';
 import { redirect } from 'next/navigation';
 import type { Session, User } from '@supabase/supabase-js';
 
-import { createSupabaseServerClient } from './supabase';
+import { createSupabaseServerClient } from './supabaseServer';
 
 export const getCachedServerSupabase = cache(() => createSupabaseServerClient());
 
