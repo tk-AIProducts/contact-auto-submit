@@ -10,6 +10,11 @@ import {
 import { read, utils } from 'xlsx';
 
 import { simulateAiWorkflow, type AiWorkflowRequest } from '@/lib/workflows';
+import {
+  PRODUCT_CONTEXT_GROUPS,
+  type ProductContext,
+  createEmptyProductContext,
+} from '@/lib/productContext';
 
 type SenderProfile = {
   companyName: string;
@@ -83,6 +88,9 @@ const REQUIRED_SENDER_FIELDS: Array<keyof SenderProfile> = [
   'subject',
 ];
 
+const PRODUCT_DETAIL_GROUPS = PRODUCT_CONTEXT_GROUPS;
+
+
 export default function AiCustomPage() {
   const [senderProfile, setSenderProfile] = useState<SenderProfile>(
     createDefaultSenderProfile
@@ -99,6 +107,9 @@ export default function AiCustomPage() {
   });
   const [logs, setLogs] = useState<string[]>([]);
   const [isSending, setIsSending] = useState(false);
+  const [productContext, setProductContext] = useState<ProductContext>(
+    createEmptyProductContext
+  );
 
   const senderMissingFields = useMemo(
     () =>
@@ -198,6 +209,16 @@ export default function AiCustomPage() {
           return { ...card, attachments: nextAttachments };
         })
       );
+    },
+    []
+  );
+
+  const handleProductContextChange = useCallback(
+    (field: keyof ProductContext, value: string) => {
+      setProductContext((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
     },
     []
   );
@@ -384,6 +405,7 @@ export default function AiCustomPage() {
           notes: target.notes,
           tone: 'friendly',
           language: 'ja',
+          productContext,
         }),
       });
 
@@ -422,7 +444,7 @@ export default function AiCustomPage() {
         `✅ ${target.companyName || target.contactName || target.homepageUrl} の文面を生成 (${message.length}文字)`,
       ]);
     },
-    [cards, pdfAssets, senderProfile]
+    [cards, pdfAssets, senderProfile, productContext]
   );
 
   useEffect(() => {
@@ -551,131 +573,181 @@ export default function AiCustomPage() {
           </div>
         </header>
 
-        <section className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-wide text-slate-500">
-                  SECTION 01
-                </p>
-                <h2 className="text-lg font-semibold text-slate-900">
-                  自社情報（送信者）
-                </h2>
-              </div>
-              <span className="text-xs text-slate-500">
-                必須: {REQUIRED_SENDER_FIELDS.join(', ')}
-              </span>
-            </div>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <InputField
-                label="会社名 *"
-                value={senderProfile.companyName}
-                onChange={(value) => handleSenderProfileChange('companyName', value)}
-              />
-              <InputField
-                label="部署"
-                value={senderProfile.department}
-                onChange={(value) => handleSenderProfileChange('department', value)}
-              />
-              <InputField
-                label="役職"
-                value={senderProfile.title}
-                onChange={(value) => handleSenderProfileChange('title', value)}
-              />
-              <InputField
-                label="担当者名 *"
-                value={senderProfile.fullName}
-                onChange={(value) => handleSenderProfileChange('fullName', value)}
-              />
-              <InputField
-                label="メールアドレス *"
-                type="email"
-                value={senderProfile.email}
-                onChange={(value) => handleSenderProfileChange('email', value)}
-              />
-              <InputField
-                label="電話番号"
-                value={senderProfile.phone}
-                onChange={(value) => handleSenderProfileChange('phone', value)}
-              />
-            </div>
-            <InputField
-              className="mt-4"
-              label="件名 *"
-              value={senderProfile.subject}
-              onChange={(value) => handleSenderProfileChange('subject', value)}
-            />
-            {senderMissingFields.length > 0 && (
-              <p className="mt-3 text-sm text-rose-500">
-                送信者情報の必須項目が不足しています: {senderMissingFields.join(', ')}
+        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-500">
+                SECTION 01
               </p>
-            )}
+              <h2 className="text-lg font-semibold text-slate-900">
+                自社情報（送信者）
+              </h2>
+            </div>
+            <span className="text-xs text-slate-500">
+              必須: {REQUIRED_SENDER_FIELDS.join(', ')}
+            </span>
           </div>
-
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-wide text-slate-500">
-                  SECTION 02
-                </p>
-                <h2 className="text-lg font-semibold text-slate-900">
-                  Excel / CSV 取り込み
-                </h2>
-              </div>
-              <button
-                type="button"
-                onClick={handleManualCardAdd}
-                className="rounded-full bg-slate-900 px-3 py-1 text-xs text-white hover:bg-slate-800"
-              >
-                カードを追加
-              </button>
-            </div>
-            <p className="mt-2 text-sm text-slate-600">
-              1列目: 担当者名 / 2列目: 部署 / 3列目: 役職 / 4列目: メール / 5列目: ホームページURL（必須）。
-              100社まで取り込み、読込完了後は自動的に生成キューへ投入します。
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <InputField
+              label="会社名 *"
+              value={senderProfile.companyName}
+              onChange={(value) => handleSenderProfileChange('companyName', value)}
+            />
+            <InputField
+              label="部署"
+              value={senderProfile.department}
+              onChange={(value) => handleSenderProfileChange('department', value)}
+            />
+            <InputField
+              label="役職"
+              value={senderProfile.title}
+              onChange={(value) => handleSenderProfileChange('title', value)}
+            />
+            <InputField
+              label="担当者名 *"
+              value={senderProfile.fullName}
+              onChange={(value) => handleSenderProfileChange('fullName', value)}
+            />
+            <InputField
+              label="メールアドレス *"
+              type="email"
+              value={senderProfile.email}
+              onChange={(value) => handleSenderProfileChange('email', value)}
+            />
+            <InputField
+              label="電話番号"
+              value={senderProfile.phone}
+              onChange={(value) => handleSenderProfileChange('phone', value)}
+            />
+          </div>
+          <InputField
+            className="mt-4"
+            label="件名 *"
+            value={senderProfile.subject}
+            onChange={(value) => handleSenderProfileChange('subject', value)}
+          />
+          {senderMissingFields.length > 0 && (
+            <p className="mt-3 text-sm text-rose-500">
+              送信者情報の必須項目が不足しています: {senderMissingFields.join(', ')}
             </p>
-            <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50/80 px-4 py-8 text-center hover:border-slate-400">
-              <input
-                type="file"
-                accept=".xlsx,.xls,.csv"
-                onChange={handleFileInputChange}
-                className="sr-only"
-              />
-              <span className="text-sm font-medium text-slate-700">
-                ファイルを選択またはドロップ
-              </span>
-              <span className="mt-1 text-xs text-slate-500">
-                .xlsx / .xls / .csv 対応
-              </span>
-            </label>
-            {uploadState.fileName && (
-              <div className="mt-4 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                <p className="font-medium text-slate-900">{uploadState.fileName}</p>
-                <p>
-                  取り込み {uploadState.importedCount} 件 / スキップ{' '}
-                  {uploadState.skippedCount} 件
-                </p>
-              </div>
-            )}
-            {uploadState.error && (
-              <p className="mt-3 text-sm text-rose-500">{uploadState.error}</p>
-            )}
-            <div className="mt-4 flex gap-3">
-              <button
-                type="button"
-                onClick={handleQueuePendingCards}
-                className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-              >
-                未生成カードを再キュー
-              </button>
-              <button
-                type="button"
-                onClick={handleClearCards}
-                className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-              >
-                カードをリセット
-              </button>
+          )}
+        </section>
+
+        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-500">
+                SECTION 02
+              </p>
+              <h2 className="text-lg font-semibold text-slate-900">
+                商品理解とターゲット情報
+              </h2>
             </div>
+            <span className="text-xs text-slate-500">
+              1to1精度を上げるための追加コンテキスト
+            </span>
+          </div>
+          <p className="mt-2 text-sm text-slate-600">
+            以下の項目を埋めるほど、AIが刺さる提案理由や使い方を自然に引用しやすくなります。
+            分かっている範囲だけでも構わないので、定期的にアップデートしてください。
+          </p>
+          <div className="mt-6 flex flex-col gap-5">
+            {PRODUCT_DETAIL_GROUPS.map((group) => (
+              <div
+                key={group.id}
+                className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4"
+              >
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900">
+                    {group.title}
+                  </h3>
+                  {group.description && (
+                    <p className="text-sm text-slate-600">{group.description}</p>
+                  )}
+                </div>
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  {group.fields.map((field) => (
+                    <TextareaField
+                      key={field.key}
+                      label={field.label}
+                      value={productContext[field.key]}
+                      onChange={(value) =>
+                        handleProductContextChange(field.key, value)
+                      }
+                      placeholder={field.helper}
+                      helper={field.helper}
+                      rows={4}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-500">
+                SECTION 03
+              </p>
+              <h2 className="text-lg font-semibold text-slate-900">
+                Excel / CSV 取り込み
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={handleManualCardAdd}
+              className="rounded-full bg-slate-900 px-3 py-1 text-xs text-white hover:bg-slate-800"
+            >
+              カードを追加
+            </button>
+          </div>
+          <p className="mt-2 text-sm text-slate-600">
+            1列目: 担当者名 / 2列目: 部署 / 3列目: 役職 / 4列目: メール / 5列目: ホームページURL（必須）。
+            100社まで取り込み、読込完了後は自動的に生成キューへ投入します。
+          </p>
+          <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50/80 px-4 py-8 text-center hover:border-slate-400">
+            <input
+              type="file"
+              accept=".xlsx,.xls,.csv"
+              onChange={handleFileInputChange}
+              className="sr-only"
+            />
+            <span className="text-sm font-medium text-slate-700">
+              ファイルを選択またはドロップ
+            </span>
+            <span className="mt-1 text-xs text-slate-500">
+              .xlsx / .xls / .csv 対応
+            </span>
+          </label>
+          {uploadState.fileName && (
+            <div className="mt-4 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-600">
+              <p className="font-medium text-slate-900">{uploadState.fileName}</p>
+              <p>
+                取り込み {uploadState.importedCount} 件 / スキップ{' '}
+                {uploadState.skippedCount} 件
+              </p>
+            </div>
+          )}
+          {uploadState.error && (
+            <p className="mt-3 text-sm text-rose-500">{uploadState.error}</p>
+          )}
+          <div className="mt-4 flex gap-3">
+            <button
+              type="button"
+              onClick={handleQueuePendingCards}
+              className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              未生成カードを再キュー
+            </button>
+            <button
+              type="button"
+              onClick={handleClearCards}
+              className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              カードをリセット
+            </button>
           </div>
         </section>
 
@@ -1033,6 +1105,40 @@ function InputField({
         className={`w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900 ${
           disabled ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-white text-slate-900'
         }`}
+      />
+    </label>
+  );
+}
+
+function TextareaField({
+  label,
+  value,
+  onChange,
+  placeholder,
+  className,
+  helper,
+  rows = 3,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  className?: string;
+  helper?: string;
+  rows?: number;
+}) {
+  return (
+    <label className={`flex flex-col gap-1 ${className ?? ''}`}>
+      <span className="text-sm font-medium text-slate-700">{label}</span>
+      {helper && (
+        <span className="text-xs text-slate-500">{helper}</span>
+      )}
+      <textarea
+        value={value}
+        rows={rows}
+        placeholder={placeholder}
+        onChange={(event) => onChange(event.target.value)}
+        className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900"
       />
     </label>
   );

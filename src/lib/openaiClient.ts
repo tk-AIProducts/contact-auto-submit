@@ -8,6 +8,10 @@ import {
   MISSING_FIELD_PLACEHOLDER,
   isPlaceholderValue,
 } from '@/lib/placeholders';
+import {
+  ProductContext,
+  formatProductContextForPrompt,
+} from '@/lib/productContext';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const RAW_OPENAI_API_URL = process.env.OPENAI_API_URL;
@@ -58,6 +62,7 @@ export type SalesCopyRequest = {
   attachments?: AttachmentDescriptor[];
   tone?: 'friendly' | 'formal' | 'casual';
   language?: 'ja' | 'en';
+  productContext?: ProductContext;
 };
 
 export type SalesCopyResponse = {
@@ -181,6 +186,7 @@ function buildPrompt({
   attachments = [],
   tone = 'friendly',
   language = 'ja',
+  productContext,
 }: SalesCopyRequest) {
   const toneLabel =
     tone === 'formal'
@@ -231,6 +237,14 @@ ${notes.trim()}
 `
     : '';
 
+  const productContextText = formatProductContextForPrompt(productContext);
+  const productContextSection = productContextText
+    ? `
+## 自社プロダクト・営業戦略コンテキスト
+${productContextText}
+`
+    : '';
+
   const structuredInput = JSON.stringify(
     {
       sender,
@@ -241,6 +255,7 @@ ${notes.trim()}
       notes,
       tone,
       language,
+      productContext,
     },
     null,
     2
@@ -282,7 +297,7 @@ ${siteSummary}
 
 **重要**: この情報から相手企業の**具体的な事業内容やサービス名**を読み取り、本文で自然に言及してください。
 URLや項目名（【】で囲まれた見出し）をそのまま本文に書かないこと。
-${attachmentSection}${notesSection}
+${attachmentSection}${notesSection}${productContextSection}
 ---
 
 ## 作成指示

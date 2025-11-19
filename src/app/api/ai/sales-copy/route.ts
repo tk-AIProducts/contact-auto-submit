@@ -6,6 +6,10 @@ import {
   normalizeWithPlaceholder,
   resolvePlaceholder,
 } from '@/lib/placeholders';
+import {
+  ProductContext,
+  sanitizeProductContext,
+} from '@/lib/productContext';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -37,6 +41,7 @@ type RequestBody = {
   notes?: string;
   tone?: 'friendly' | 'formal' | 'casual';
   language?: 'ja' | 'en';
+  productContext?: ProductContext;
 };
 
 export async function POST(request: NextRequest) {
@@ -44,6 +49,7 @@ export async function POST(request: NextRequest) {
   try {
     const sender = validateSender(body.sender);
     const recipient = validateRecipient(body.recipient);
+    const productContext = sanitizeProductContext(body.productContext);
     console.info('[SalesCopyAPI] Request validated', {
       homepageUrl: recipient.homepageUrl,
       tone: body.tone,
@@ -71,6 +77,7 @@ export async function POST(request: NextRequest) {
         attachments: sanitizeAttachments(body.attachments),
         tone: body.tone,
         language: body.language,
+        productContext,
       });
       text = normalizeOutput(result.text, sender);
     } catch (error) {
