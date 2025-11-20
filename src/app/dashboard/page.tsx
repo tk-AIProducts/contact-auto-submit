@@ -108,12 +108,12 @@ export default function DashboardPage() {
             />
             
             <div className="ml-auto flex items-center">
-              {metrics.loading && (
+            {metrics.loading && (
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-                  更新中...
-                </span>
-              )}
+                更新中...
+              </span>
+            )}
             </div>
           </div>
           {metrics.error && (
@@ -132,8 +132,8 @@ export default function DashboardPage() {
             >
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {item.label}
-                </p>
+                {item.label}
+              </p>
                 <p className="mt-2 text-3xl font-bold text-foreground tabular-nums">{item.value}</p>
               </div>
               {item.helper && (
@@ -165,8 +165,8 @@ export default function DashboardPage() {
                   <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-muted">
                     <div
                       className="absolute left-0 top-0 h-full rounded-full bg-primary transition-all duration-500 ease-out"
-                      style={{ width: `${percentage}%` }}
-                    />
+                        style={{ width: `${percentage}%` }}
+                      />
                   </div>
                   <div className="mt-1 text-right text-xs text-muted-foreground">
                     Unique: {pdf.uniqueViews}
@@ -190,7 +190,7 @@ export default function DashboardPage() {
                   return (
                     <div key={slot.slot} className="group flex flex-1 flex-col items-center gap-2">
                       <div className="relative w-full flex-1 flex items-end rounded-t-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                         <div 
+                    <div
                            className="w-full rounded-t-md bg-primary/80 transition-all duration-500 ease-out group-hover:bg-primary"
                            style={{ height: `${Math.max(4, heightPct)}%` }}
                          />
@@ -198,11 +198,11 @@ export default function DashboardPage() {
                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded shadow-lg pointer-events-none whitespace-nowrap">
                            {slot.views} views
                          </div>
-                      </div>
+                  </div>
                       <span className="text-xs font-medium text-muted-foreground text-center truncate w-full">
                         {slot.slot}
                       </span>
-                    </div>
+                </div>
                   );
               })}
             </div>
@@ -241,8 +241,8 @@ export default function DashboardPage() {
                       <th className="px-4 py-3 font-medium">閲覧者</th>
                       <th className="px-4 py-3 font-medium">資料</th>
                       <th className="px-4 py-3 font-medium text-right">日時</th>
-                    </tr>
-                  </thead>
+                  </tr>
+                </thead>
                   <tbody className="divide-y divide-border/50">
                     {metrics.data.logs.map((log, idx) => (
                       <tr key={`${log.viewer}-${log.viewedAt}-${idx}`} className="hover:bg-muted/30 transition-colors">
@@ -254,10 +254,10 @@ export default function DashboardPage() {
                         <td className="px-4 py-3 text-right text-xs text-muted-foreground whitespace-nowrap">
                           {log.viewedAt}
                         </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
               </div>
             </div>
           </div>
@@ -282,17 +282,17 @@ function FilterSelect({
     <label className="flex flex-col gap-1.5">
       <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{label}</span>
       <div className="relative">
-        <select
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
           className="appearance-none w-full min-w-[140px] rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
           <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
             <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />

@@ -431,11 +431,11 @@ export default function AiCustomPage() {
         prev.map((card) =>
           card.id === cardId
             ? {
-                ...card,
-                generatedMessage: message,
-                status: 'ready',
-                errorMessage: undefined,
-              }
+              ...card,
+              generatedMessage: message,
+              status: 'ready',
+              errorMessage: undefined,
+            }
             : card
         )
       );
@@ -554,9 +554,9 @@ export default function AiCustomPage() {
             </div>
             <span className="text-lg font-bold tracking-tight">apotto</span>
           </div>
-           <div className="text-sm font-medium text-muted-foreground">
-             AI Custom
-           </div>
+          <div className="text-sm font-medium text-muted-foreground">
+            AI Custom
+          </div>
         </div>
       </div>
 
@@ -641,12 +641,12 @@ export default function AiCustomPage() {
         </section>
 
         <section className="card-clean p-8">
-          <SectionHeader 
-            number="02" 
+          <SectionHeader
+            number="02"
             title="商品理解とターゲット情報"
             description="AIが提案理由や使い方を自然に引用するための追加コンテキストです。"
           />
-          
+
           <div className="mt-8 flex flex-col gap-6">
             {PRODUCT_DETAIL_GROUPS.map((group) => (
               <div
@@ -689,10 +689,10 @@ export default function AiCustomPage() {
               + カードを手動追加
             </button>
           </div>
-          
+
           <div className="mt-2 mb-6 rounded-lg bg-blue-50/50 border border-blue-100 p-4 text-sm text-blue-700">
-             <p className="font-semibold mb-1">フォーマット仕様</p>
-             <p>1列目: 担当者名 / 2列目: 部署 / 3列目: 役職 / 4列目: メール / 5列目: ホームページURL（必須）</p>
+            <p className="font-semibold mb-1">フォーマット仕様</p>
+            <p>1列目: 担当者名 / 2列目: 部署 / 3列目: 役職 / 4列目: メール / 5列目: ホームページURL（必須）</p>
           </div>
 
           <label className="group relative flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/10 px-4 py-10 text-center transition-colors hover:border-primary/50 hover:bg-primary/5">
@@ -728,7 +728,7 @@ export default function AiCustomPage() {
               )}
             </div>
           )}
-          
+
           <div className="mt-6 flex gap-3">
             <button
               type="button"
@@ -773,8 +773,8 @@ export default function AiCustomPage() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <div className="h-8 w-8 flex-shrink-0 rounded bg-rose-100 text-rose-500 flex items-center justify-center">
-                         <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17v-1h2v1h-2zm0-12v10h2v-10h-2z" fillOpacity="0"/><path d="M7 6h10v12h-10z" fill="none"/><path d="M11.25 2h1.5v1.5h-1.5z" fillOpacity="0"/><path d="M19.5 3h-15c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2v-14c0-1.103-.897-2-2-2zm-3 14h-9v-10h9v10z" opacity=".5"/><path d="M7 6h10v10h-10z" fillOpacity=".2"/></svg>
-                         <span className="text-xs font-bold">PDF</span>
+                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17v-1h2v1h-2zm0-12v10h2v-10h-2z" fillOpacity="0" /><path d="M7 6h10v12h-10z" fill="none" /><path d="M11.25 2h1.5v1.5h-1.5z" fillOpacity="0" /><path d="M19.5 3h-15c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2v-14c0-1.103-.897-2-2-2zm-3 14h-9v-10h9v10z" opacity=".5" /><path d="M7 6h10v10h-10z" fillOpacity=".2" /></svg>
+                        <span className="text-xs font-bold">PDF</span>
                       </div>
                       <p className="text-sm font-medium text-foreground truncate max-w-[140px]" title={pdf.name}>{pdf.name}</p>
                     </div>
@@ -802,7 +802,7 @@ export default function AiCustomPage() {
               <span className="text-primary font-bold">{sendableReadyCards.length}</span> / {sendableCards.length} 社 OK
             </p>
           </div>
-          
+
           {cards.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-border bg-muted/10 p-12 text-center text-muted-foreground">
               <p>Excelを取り込むか「カードを追加」してください</p>
@@ -828,48 +828,48 @@ export default function AiCustomPage() {
         <section className="grid gap-6 lg:grid-cols-2">
           <div className="card-clean p-6">
             <div className="flex items-center justify-between mb-4">
-               <SectionHeader number="06" title="自動生成キュー" />
-               <span className="text-xs font-medium bg-muted px-2 py-1 rounded text-muted-foreground">
+              <SectionHeader number="06" title="自動生成キュー" />
+              <span className="text-xs font-medium bg-muted px-2 py-1 rounded text-muted-foreground">
                 {queueState.pendingIds.length} pending
               </span>
             </div>
 
             <div className="space-y-4">
-               <div className="rounded-lg border border-border bg-muted/30 p-4 text-sm">
-                 <div className="flex justify-between mb-1">
-                   <span className="text-muted-foreground">Status:</span>
-                   <span className={`font-medium ${queueState.running ? 'text-primary animate-pulse' : 'text-foreground'}`}>
-                      {queueState.running ? 'Running...' : 'Idle'}
-                   </span>
-                 </div>
-                 <div className="flex justify-between">
-                    <span className="text-muted-foreground">Last Processed:</span>
-                    <span className="text-foreground truncate max-w-[150px]">{queueState.lastProcessed || '-'}</span>
-                 </div>
-                 {queueState.error && (
-                    <div className="mt-2 pt-2 border-t border-border/50 text-rose-500 text-xs">
-                      Error: {queueState.error}
-                    </div>
-                 )}
-               </div>
+              <div className="rounded-lg border border-border bg-muted/30 p-4 text-sm">
+                <div className="flex justify-between mb-1">
+                  <span className="text-muted-foreground">Status:</span>
+                  <span className={`font-medium ${queueState.running ? 'text-primary animate-pulse' : 'text-foreground'}`}>
+                    {queueState.running ? 'Running...' : 'Idle'}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Last Processed:</span>
+                  <span className="text-foreground truncate max-w-[150px]">{queueState.lastProcessed || '-'}</span>
+                </div>
+                {queueState.error && (
+                  <div className="mt-2 pt-2 border-t border-border/50 text-rose-500 text-xs">
+                    Error: {queueState.error}
+                  </div>
+                )}
+              </div>
 
-               <div className="flex gap-3">
-                  <button onClick={handleQueuePendingCards} className="btn-secondary flex-1 text-xs">
-                    リトライ
-                  </button>
-                  <button onClick={clearQueue} className="btn-secondary flex-1 text-xs">
-                    停止
-                  </button>
-               </div>
-
-               <button
-                  type="button"
-                  onClick={handleSimulateSend}
-                  disabled={isSending || sendableCards.length === 0}
-                  className="btn-primary w-full mt-2"
-                >
-                  {isSending ? '送信中...' : 'チェック済み企業へ一括送信 (モック)'}
+              <div className="flex gap-3">
+                <button onClick={handleQueuePendingCards} className="btn-secondary flex-1 text-xs">
+                  リトライ
                 </button>
+                <button onClick={clearQueue} className="btn-secondary flex-1 text-xs">
+                  停止
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleSimulateSend}
+                disabled={isSending || sendableCards.length === 0}
+                className="btn-primary w-full mt-2"
+              >
+                {isSending ? '送信中...' : 'チェック済み企業へ一括送信 (モック)'}
+              </button>
             </div>
           </div>
 
@@ -881,15 +881,15 @@ export default function AiCustomPage() {
               </button>
             </div>
             <div className="flex-1 overflow-y-auto space-y-2 pr-2">
-               {logs.length === 0 ? (
+              {logs.length === 0 ? (
                 <p className="text-xs text-muted-foreground text-center py-8">ログはありません</p>
-               ) : (
-                 logs.map((log, i) => (
-                   <div key={i} className="text-xs p-2 rounded bg-muted/50 text-foreground font-mono break-all">
-                     {log}
-                   </div>
-                 ))
-               )}
+              ) : (
+                logs.map((log, i) => (
+                  <div key={i} className="text-xs p-2 rounded bg-muted/50 text-foreground font-mono break-all">
+                    {log}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </section>
@@ -925,133 +925,133 @@ function CardItem({
 }: {
   card: CompanyCard;
   pdfAssets: PdfAsset[];
-  handleCardFieldChange: any;
-  handleToggleSendEnabled: any;
-  handleAttachmentToggle: any;
-  handleMessageChange: any;
-  handleGenerateEntry: any;
+  handleCardFieldChange: (cardId: string, field: CompanyCardField, value: string) => void;
+  handleToggleSendEnabled: (cardId: string) => void;
+  handleAttachmentToggle: (cardId: string, pdfId: string, enabled: boolean) => void;
+  handleMessageChange: (cardId: string, value: string) => void;
+  handleGenerateEntry: (cardId: string) => Promise<void>;
 }) {
   return (
     <div className={`card-clean p-6 transition-all ${card.status === 'generating' ? 'ring-2 ring-primary/20' : ''}`}>
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/50 pb-4 mb-4">
         <div className="flex items-center gap-4">
           <label className="flex items-center gap-2 cursor-pointer">
-             <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${card.sendEnabled ? 'bg-primary border-primary text-white' : 'bg-card border-muted-foreground/40'}`}>
-                {card.sendEnabled && <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
-             </div>
-             <input 
-               type="checkbox" 
-               checked={card.sendEnabled} 
-               onChange={() => handleToggleSendEnabled(card.id)}
-               className="sr-only"
-               disabled={card.status === 'generating'}
-             />
-             <span className="text-sm font-semibold text-foreground">送信対象</span>
+            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${card.sendEnabled ? 'bg-primary border-primary text-white' : 'bg-card border-muted-foreground/40'}`}>
+              {card.sendEnabled && <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
+            </div>
+            <input
+              type="checkbox"
+              checked={card.sendEnabled}
+              onChange={() => handleToggleSendEnabled(card.id)}
+              className="sr-only"
+              disabled={card.status === 'generating'}
+            />
+            <span className="text-sm font-semibold text-foreground">送信対象</span>
           </label>
-          
+
           <div className="h-4 w-[1px] bg-border"></div>
-          
+
           <div className="flex items-center gap-2">
-             <span className={`text-xs px-2 py-0.5 rounded-md border ${!card.homepageUrl ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-muted border-transparent text-muted-foreground'}`}>
-               {card.homepageUrl ? 'URLあり' : 'URLなし'}
-             </span>
-             <StatusBadge status={card.status} />
+            <span className={`text-xs px-2 py-0.5 rounded-md border ${!card.homepageUrl ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-muted border-transparent text-muted-foreground'}`}>
+              {card.homepageUrl ? 'URLあり' : 'URLなし'}
+            </span>
+            <StatusBadge status={card.status} />
           </div>
         </div>
-        
+
         <button
-           type="button"
-           onClick={() => void handleGenerateEntry(card.id)}
-           disabled={card.status === 'generating'}
-           className="btn-secondary text-xs py-1.5 h-8"
+          type="button"
+          onClick={() => void handleGenerateEntry(card.id)}
+          disabled={card.status === 'generating'}
+          className="btn-secondary text-xs py-1.5 h-8"
         >
-           {card.status === 'generating' ? '生成中...' : 'このカードを生成'}
+          {card.status === 'generating' ? '生成中...' : 'このカードを生成'}
         </button>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="space-y-4">
-           <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">企業情報</h4>
-           <div className="grid gap-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">企業情報</h4>
+          <div className="grid gap-3">
+            <InputField
+              label="相手企業名"
+              value={card.companyName}
+              placeholder="例: 株式会社◯◯"
+              onChange={(value) => handleCardFieldChange(card.id, 'companyName', value)}
+              disabled={card.status === 'generating'}
+            />
+            <div className="grid grid-cols-2 gap-3">
               <InputField
-                label="相手企業名"
-                value={card.companyName}
-                placeholder="例: 株式会社◯◯"
-                onChange={(value) => handleCardFieldChange(card.id, 'companyName', value)}
+                label="担当者名"
+                value={card.contactName}
+                placeholder="例: 山田様"
+                onChange={(value) => handleCardFieldChange(card.id, 'contactName', value)}
                 disabled={card.status === 'generating'}
               />
-              <div className="grid grid-cols-2 gap-3">
-                 <InputField
-                  label="担当者名"
-                  value={card.contactName}
-                  placeholder="例: 山田様"
-                  onChange={(value) => handleCardFieldChange(card.id, 'contactName', value)}
-                  disabled={card.status === 'generating'}
-                />
-                <InputField
-                  label="役職"
-                  value={card.title}
-                  onChange={(value) => handleCardFieldChange(card.id, 'title', value)}
-                  disabled={card.status === 'generating'}
-                />
-              </div>
               <InputField
-                label="HP URL *"
-                value={card.homepageUrl}
-                onChange={(value) => handleCardFieldChange(card.id, 'homepageUrl', normalizeHomepageUrl(value))}
+                label="役職"
+                value={card.title}
+                onChange={(value) => handleCardFieldChange(card.id, 'title', value)}
                 disabled={card.status === 'generating'}
               />
-           </div>
+            </div>
+            <InputField
+              label="HP URL *"
+              value={card.homepageUrl}
+              onChange={(value) => handleCardFieldChange(card.id, 'homepageUrl', normalizeHomepageUrl(value))}
+              disabled={card.status === 'generating'}
+            />
+          </div>
         </div>
 
         <div className="space-y-4">
-           <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">生成コンテンツ</h4>
-           <div className="relative">
-              <textarea
-                value={card.generatedMessage}
-                onChange={(event) => handleMessageChange(card.id, event.target.value)}
-                rows={8}
-                placeholder="AI生成結果がここに表示されます..."
-                disabled={card.status === 'generating'}
-                className="input-clean min-h-[200px] resize-y font-mono text-sm leading-relaxed"
-              />
-              {card.status === 'generating' && (
-                 <div className="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-[1px] rounded-xl">
-                    <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg border border-border">
-                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                       <span className="text-xs font-medium text-foreground">Thinking...</span>
-                    </div>
-                 </div>
-              )}
-           </div>
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">生成コンテンツ</h4>
+          <div className="relative">
+            <textarea
+              value={card.generatedMessage}
+              onChange={(event) => handleMessageChange(card.id, event.target.value)}
+              rows={8}
+              placeholder="AI生成結果がここに表示されます..."
+              disabled={card.status === 'generating'}
+              className="input-clean min-h-[200px] resize-y font-mono text-sm leading-relaxed"
+            />
+            {card.status === 'generating' && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-[1px] rounded-xl">
+                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg border border-border">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                  <span className="text-xs font-medium text-foreground">Thinking...</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      
+
       {/* Attachments */}
       {pdfAssets.length > 0 && (
-         <div className="mt-6 pt-4 border-t border-border/50">
-            <p className="text-xs font-medium text-muted-foreground mb-3">添付資料を選択</p>
-            <div className="flex flex-wrap gap-3">
-               {pdfAssets.map((pdf) => (
-                  <label key={pdf.id} className="inline-flex items-center gap-2 cursor-pointer select-none p-1.5 rounded-lg hover:bg-muted/50 transition-colors">
-                     <input
-                        type="checkbox"
-                        checked={Boolean(card.attachments[pdf.id])}
-                        onChange={(event) => handleAttachmentToggle(card.id, pdf.id, event.target.checked)}
-                        disabled={card.status === 'generating'}
-                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                     <span className="text-sm text-foreground">{pdf.name}</span>
-                  </label>
-               ))}
-            </div>
-         </div>
+        <div className="mt-6 pt-4 border-t border-border/50">
+          <p className="text-xs font-medium text-muted-foreground mb-3">添付資料を選択</p>
+          <div className="flex flex-wrap gap-3">
+            {pdfAssets.map((pdf) => (
+              <label key={pdf.id} className="inline-flex items-center gap-2 cursor-pointer select-none p-1.5 rounded-lg hover:bg-muted/50 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={Boolean(card.attachments[pdf.id])}
+                  onChange={(event) => handleAttachmentToggle(card.id, pdf.id, event.target.checked)}
+                  disabled={card.status === 'generating'}
+                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                />
+                <span className="text-sm text-foreground">{pdf.name}</span>
+              </label>
+            ))}
+          </div>
+        </div>
       )}
-      
+
       {card.errorMessage && (
-         <div className="mt-4 p-3 bg-rose-50 border border-rose-100 rounded-lg text-xs text-rose-600">
-            {card.errorMessage}
-         </div>
+        <div className="mt-4 p-3 bg-rose-50 border border-rose-100 rounded-lg text-xs text-rose-600">
+          {card.errorMessage}
+        </div>
       )}
     </div>
   );
@@ -1154,7 +1154,7 @@ function StatusBadge({ status }: { status: CompanyCard['status'] }) {
     error: 'bg-rose-50 text-rose-700 border-rose-200',
     pending: 'bg-slate-100 text-slate-600 border-slate-200',
   };
-  
+
   const labels = {
     ready: '完了',
     generating: '生成中',

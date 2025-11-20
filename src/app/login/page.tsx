@@ -22,14 +22,14 @@ export default function LoginPage() {
 
     // 擬似的な遅延を追加してUXを向上
     setTimeout(() => {
-      if (!isAuthorized) {
-        setError('ユーザー名またはパスワードが正しくありません。');
-        setIsSubmitting(false);
-        return;
-      }
+    if (!isAuthorized) {
+      setError('ユーザー名またはパスワードが正しくありません。');
+      setIsSubmitting(false);
+      return;
+    }
 
-      document.cookie = `apotto_auth=1; path=/; max-age=${60 * 60 * 24 * 7}`;
-      router.push('/ai-custom');
+    document.cookie = `apotto_auth=1; path=/; max-age=${60 * 60 * 24 * 7}`;
+    router.push('/ai-custom');
     }, 600);
   };
 
@@ -43,52 +43,52 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold tracking-tight">apotto にログイン</h1>
           <p className="mt-2 text-sm text-muted-foreground">
             アカウント情報を入力してダッシュボードへアクセス
-          </p>
+        </p>
         </div>
 
         <div className="card-clean shadow-xl shadow-slate-200/50 ring-1 ring-slate-200 dark:shadow-none dark:ring-border">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-1.5">
               <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                ユーザー名
+            ユーザー名
               </label>
-              <input
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+            <input
+              type="text"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
                 className="input-clean"
                 placeholder="VOIQ-2025"
-                autoComplete="username"
-                required
-              />
+              autoComplete="username"
+              required
+            />
             </div>
 
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                  パスワード
+            パスワード
                 </label>
               </div>
-              <input
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
                 className="input-clean"
                 placeholder="••••••••"
-                autoComplete="current-password"
-                required
-              />
+              autoComplete="current-password"
+              required
+            />
             </div>
 
-            {error && (
+          {error && (
               <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
-                {error}
+              {error}
               </div>
-            )}
+          )}
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
+          <button
+            type="submit"
+            disabled={isSubmitting}
               className="btn-primary w-full"
             >
               {isSubmitting ? (
@@ -102,8 +102,8 @@ export default function LoginPage() {
               ) : (
                 'ログイン'
               )}
-            </button>
-          </form>
+          </button>
+        </form>
 
           <div className="mt-6 text-center text-xs text-muted-foreground">
             <p>デモアカウント: VOIQ-2025 / VOIQ-2025</p>

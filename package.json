@@ -9,15 +9,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.0",
+    "@react-three/postprocessing": "^3.0.4",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.81.1",
+    "@types/three": "^0.181.0",
     "encoding-japanese": "^2.2.0",
+    "framer-motion": "^12.23.24",
+    "gsap": "^3.13.0",
     "jose": "^6.1.2",
     "next": "15.5.3",
     "openai": "^6.8.1",
     "pdfjs-dist": "^5.4.394",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "three": "^0.181.2",
     "xlsx": "^0.18.5",
     "zod": "^4.1.12"
   },
