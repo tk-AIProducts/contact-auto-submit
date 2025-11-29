@@ -111,7 +111,7 @@ export default function LoginPage() {
         </div>
         
         <div className="mt-8 text-center text-xs text-muted-foreground/60">
-          &copy; 2025 Apotto Inc. All rights reserved.
+          &copy; 2025 apotto Inc. All rights reserved.
         </div>
       </div>
     </div>

@@ -2,17 +2,22 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const AUTH_COOKIE = 'apotto_auth';
-const PUBLIC_PATHS = new Set(['/login', '/favicon.ico']);
+const PUBLIC_PATHS = new Set(['/', '/login', '/favicon.ico']);
 // プレフィックスで公開するパス
 const PUBLIC_PREFIXES = ['/pdf/'];
+
+// 静的アセットの拡張子
+const STATIC_EXTENSIONS = /\.(png|jpg|jpeg|gif|svg|ico|webp|css|js|woff|woff2|ttf|eot|mjs)$/i;
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // 静的ファイル・Next.js内部パス・APIはスキップ
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.startsWith('/static')
+    pathname.startsWith('/static') ||
+    STATIC_EXTENSIONS.test(pathname)
   ) {
     return NextResponse.next();
   }

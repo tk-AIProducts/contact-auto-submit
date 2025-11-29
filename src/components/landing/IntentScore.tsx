@@ -15,55 +15,55 @@ const scoreConfig: Record<ScoreLevel, {
 }> = {
   high: {
     label: 'インテントスコア：高',
-    gradient: 'from-rose-500 to-pink-600',
-    glowColor: 'shadow-rose-500/20',
-    iconBg: 'bg-rose-500',
+    gradient: 'from-emerald-400 to-emerald-400',
+    glowColor: 'shadow-emerald-500/30',
+    iconBg: 'bg-emerald-400',
     leads: 13,
     action: '24時間以内にアクションあり',
     companies: [
-      { name: 'テクノフューチャー株式会社', time: '2分前' },
-      { name: 'グローバルネクスト株式会社', time: '15分前' },
-      { name: 'イノベーションラボ株式会社', time: '32分前' },
-      { name: 'スマートソリューションズ株式会社', time: '1時間前' },
-      { name: 'デジタルブリッジ株式会社', time: '3時間前' },
-      { name: 'クラウドワークス株式会社', time: '5時間前' },
-      { name: 'アドバンステック株式会社', time: '8時間前' },
+      { name: 'Aストラテジー株式会社', time: '2分前' },
+      { name: '株式会社Bワークス', time: '15分前' },
+      { name: '株式会社Cトレーディング', time: '32分前' },
+      { name: 'Dプロダクト合同会社', time: '1時間前' },
+      { name: 'Eテック株式会社', time: '3時間前' },
+      { name: '株式会社Fソリューションズ', time: '5時間前' },
+      { name: 'Gホールディングス株式会社', time: '8時間前' },
     ],
   },
   medium: {
     label: 'インテントスコア：中',
-    gradient: 'from-amber-400 to-orange-500',
-    glowColor: 'shadow-amber-500/20',
-    iconBg: 'bg-amber-500',
+    gradient: 'from-emerald-600 to-teal-600',
+    glowColor: 'shadow-emerald-600/20',
+    iconBg: 'bg-emerald-600',
     leads: 24,
     action: '72時間以内にアクションあり',
     companies: [
-      { name: 'ビジネスクリエイト株式会社', time: '1日前' },
-      { name: 'プライムパートナーズ株式会社', time: '1日前' },
-      { name: 'サステナブルテック株式会社', time: '2日前' },
-      { name: 'フロンティアシステム株式会社', time: '2日前' },
-      { name: 'ネクストジェネレーション株式会社', time: '2日前' },
-      { name: 'エコソリューション株式会社', time: '3日前' },
-      { name: 'インテグレートシステム株式会社', time: '3日前' },
-      { name: 'データドリブン株式会社', time: '3日前' },
+      { name: '株式会社Hインダストリー', time: '1日前' },
+      { name: 'Iコンサルティング合同会社', time: '1日前' },
+      { name: '株式会社Jクリエイティブ', time: '2日前' },
+      { name: 'Kシステム株式会社', time: '2日前' },
+      { name: '株式会社Lマーケティング', time: '2日前' },
+      { name: 'Mサービス合同会社', time: '3日前' },
+      { name: 'Nエンタープライズ株式会社', time: '3日前' },
+      { name: '株式会社Oプロダクツ', time: '3日前' },
     ],
   },
   low: {
     label: 'インテントスコア：低',
-    gradient: 'from-slate-400 to-slate-500',
-    glowColor: 'shadow-slate-500/10',
-    iconBg: 'bg-slate-400',
+    gradient: 'from-emerald-900 to-slate-900',
+    glowColor: 'shadow-emerald-900/10',
+    iconBg: 'bg-emerald-900',
     leads: 132,
     action: 'アクションから73時間以上経過',
     companies: [
-      { name: 'レガシーホールディングス株式会社', time: '5日前' },
-      { name: 'トラディショナル商事株式会社', time: '1週間前' },
-      { name: 'スタンダードサービス株式会社', time: '1週間前' },
-      { name: 'ベーシックインダストリー株式会社', time: '2週間前' },
-      { name: 'コンベンショナル株式会社', time: '2週間前' },
-      { name: 'クラシックエンタープライズ株式会社', time: '3週間前' },
-      { name: 'オールドスタイル株式会社', time: '1ヶ月前' },
-      { name: 'ヘリテージグループ株式会社', time: '1ヶ月前' },
+      { name: 'Pコミュニケーションズ株式会社', time: '5日前' },
+      { name: '株式会社Qデザイン', time: '1週間前' },
+      { name: 'Rトレーディング株式会社', time: '1週間前' },
+      { name: '株式会社Sラボ', time: '2週間前' },
+      { name: 'Tソリューション合同会社', time: '2週間前' },
+      { name: '株式会社Uリンクス', time: '3週間前' },
+      { name: 'Vプランニング株式会社', time: '1ヶ月前' },
+      { name: '株式会社Wイノベーション', time: '1ヶ月前' },
     ],
   },
 };
@@ -74,7 +74,7 @@ function ScoreCard({ level, isVisible, delay }: { level: ScoreLevel; isVisible: 
 
   return (
     <div
-      className={`reveal-on-scroll group relative bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 ${isVisible ? 'is-visible' : ''} ${isHigh ? 'ring-2 ring-rose-200' : ''}`}
+      className={`reveal-on-scroll group relative bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 ${isVisible ? 'is-visible' : ''} ${isHigh ? 'ring-2 ring-emerald-200' : ''}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* グローエフェクト */}
@@ -83,12 +83,12 @@ function ScoreCard({ level, isVisible, delay }: { level: ScoreLevel; isVisible: 
       {/* ヘッダー */}
       <div className={`relative bg-gradient-to-r ${config.gradient} px-5 py-4`}>
         <div className="flex items-center justify-between">
-          <span className="text-sm font-bold text-white tracking-wide">{config.label}</span>
+          <span className="text-sm font-bold text-white tracking-wide text-shadow-sm">{config.label}</span>
           {isHigh && (
-            <span className="flex items-center gap-1 text-xs text-white/90 bg-white/20 px-2 py-0.5 rounded-full">
+            <span className="flex items-center gap-1 text-xs text-emerald-900 bg-white/90 px-2 py-0.5 rounded-full font-bold shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               HOT
             </span>
@@ -132,7 +132,7 @@ function ScoreCard({ level, isVisible, delay }: { level: ScoreLevel; isVisible: 
         <div className="mt-5 pt-4 border-t border-slate-100">
           <button className={`w-full py-2.5 rounded-xl text-sm font-medium transition-all ${
             isHigh 
-              ? 'bg-gradient-to-r from-rose-500 to-pink-600 text-white hover:shadow-lg hover:shadow-rose-500/25' 
+              ? 'bg-gradient-to-r from-emerald-400 to-emerald-500 text-white hover:shadow-lg hover:shadow-emerald-500/25' 
               : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
           }`}>
             {isHigh ? '今すぐアプローチ' : '詳細を見る'}
@@ -166,17 +166,14 @@ export function IntentScore() {
     <section id="intent-score" className="py-24 bg-slate-50 relative overflow-hidden" ref={ref}>
       {/* 背景デコレーション */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-rose-100 rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-100 rounded-full blur-3xl opacity-30" />
+        <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-30" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-teal-100 rounded-full blur-3xl opacity-30" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         {/* ヘッダー */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-2 text-emerald-600 text-sm font-semibold tracking-wide uppercase mb-4 bg-emerald-50 px-4 py-1.5 rounded-full">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
+          <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-600 tracking-wide uppercase mb-4">
             Intent Analysis
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
@@ -229,23 +226,7 @@ export function IntentScore() {
           <ScoreCard level="low" isVisible={isVisible} delay={300} />
         </div>
 
-        {/* 補足説明 */}
-        <div className="mt-14 flex flex-wrap justify-center gap-4">
-          <div className="flex items-center gap-2.5 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-rose-500 to-pink-600"></div>
-            <span className="text-sm text-slate-600 font-medium">高：即アクション推奨</span>
-          </div>
-          <div className="flex items-center gap-2.5 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-amber-400 to-orange-500"></div>
-            <span className="text-sm text-slate-600 font-medium">中：フォローアップ推奨</span>
-          </div>
-          <div className="flex items-center gap-2.5 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-slate-400 to-slate-500"></div>
-            <span className="text-sm text-slate-600 font-medium">低：再アプローチ検討</span>
-          </div>
-        </div>
       </div>
     </section>
   );
 }
-

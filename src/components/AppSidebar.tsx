@@ -42,12 +42,12 @@ export function AppSidebar() {
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/apotto/apotto_icon.png"
-            alt="Apotto Icon"
+            alt="apotto Icon"
             className="h-7 w-7"
           />
           <img
             src="/apotto/apotto_logo.png"
-            alt="Apotto Logo"
+            alt="apotto Logo"
             className="h-5 w-auto"
           />
         </Link>

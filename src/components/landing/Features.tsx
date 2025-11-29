@@ -62,9 +62,12 @@ export function Features() {
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-600 tracking-wide uppercase mb-4">
+            Features
+          </span>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            最強の営業チームを、<br />
-            AIひとつで。
+            最強の営業チームを<br />
+            AIひとつで
           </h2>
           <p className="mt-4 text-lg text-slate-600">
             apottoは単なる自動送信ツールではありません。<br />
@@ -85,7 +88,7 @@ export function Features() {
           />
           <FeatureCard
             title="フォーム自動投稿"
-            description="生成した文面を、対象企業の問い合わせフォームへ自動で入力・送信。reCAPTCHAにも対応し、手作業でのコピペ作業をゼロにします。"
+            description="生成した文面を、対象企業の問い合わせフォームへ自動で入力・送信。手作業でのコピペ作業をゼロにします。"
             icon={
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />

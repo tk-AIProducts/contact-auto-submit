@@ -4,6 +4,8 @@ import { Hero } from '@/components/landing/Hero';
 import { Features } from '@/components/landing/Features';
 import { Steps } from '@/components/landing/Steps';
 import { IntentScore } from '@/components/landing/IntentScore';
+import { DataAnalysis } from '@/components/landing/DataAnalysis';
+import { Strengths } from '@/components/landing/Strengths';
 import { ContactForm } from '@/components/landing/ContactForm';
 
 export default function LandingPage() {
@@ -15,6 +17,8 @@ export default function LandingPage() {
         <Features />
         <Steps />
         <IntentScore />
+        <DataAnalysis />
+        <Strengths />
         <ContactForm />
       </main>
       <Footer />

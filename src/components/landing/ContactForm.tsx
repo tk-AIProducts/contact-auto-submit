@@ -167,14 +167,11 @@ export function ContactForm() {
       <div className="mx-auto max-w-3xl px-6 relative z-10">
         {/* ヘッダー */}
         <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-2 text-emerald-600 text-sm font-semibold tracking-wide uppercase mb-4 bg-emerald-50 px-4 py-1.5 rounded-full">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
+          <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-600 tracking-wide uppercase mb-4">
             Contact
           </span>
           <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight">
-            Apotto – 商談が「勝手に入る」<br className="sm:hidden" />営業AIエージェント
+            apotto – 商談が「勝手に入る」<br className="sm:hidden" />営業AIエージェント
           </h2>
           <p className="mt-6 text-slate-700 text-sm leading-relaxed max-w-2xl mx-auto">
             セールスのプロによるオンボーディングと運用サポートつきで、<br />
@@ -422,7 +419,7 @@ export function ContactForm() {
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      資料をダウンロード
+                      送信
                     </span>
                   )}
                 </button>
@@ -736,7 +733,7 @@ export function ContactForm() {
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
-                      無料デモを申し込む
+                      送信
                     </span>
                   )}
                 </button>

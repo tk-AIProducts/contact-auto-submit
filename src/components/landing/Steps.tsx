@@ -151,9 +151,11 @@ export function Steps() {
     <section id="how-it-works" className="py-24 bg-white">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mb-16 text-center">
-           <span className="text-sm font-semibold uppercase tracking-wider text-primary">How it works</span>
+           <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-600 tracking-wide uppercase mb-4">
+             How it works
+           </span>
            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            たった3ステップで、<br/>アプローチを開始
+            たった3ステップで<br/>アプローチを開始
           </h2>
         </div>
 

@@ -16,49 +16,57 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-white/80 backdrop-blur-xl shadow-sm border-b border-slate-200/50 py-3'
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center group">
           <img
             src="/apotto/apotto_icon.png"
-            alt="Apotto"
-            className="h-20 w-40"
+            alt="apotto"
+            className="h-24 w-auto transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-sm font-medium text-slate-500 hover:text-emerald-600 transition-colors">
-            機能
-          </a>
-          <a href="#how-it-works" className="text-sm font-medium text-slate-500 hover:text-emerald-600 transition-colors">
-            使い方
-          </a>
-          <a href="#contact" className="text-sm font-medium text-slate-500 hover:text-emerald-600 transition-colors">
-            お問い合わせ
-          </a>
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-slate-100/50 border border-slate-200/50 backdrop-blur-sm">
+          {[
+            { href: '#features', label: '機能' },
+            { href: '#how-it-works', label: '使い方' },
+            { href: '#intent-score', label: 'インテント分析' },
+            { href: '#data-analysis', label: 'データ分析' },
+            { href: '#strengths', label: '強み' },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="px-5 py-2 text-sm font-bold text-slate-800 rounded-full transition-all duration-300 hover:text-white hover:bg-emerald-500 hover:shadow-lg hover:shadow-emerald-500/30"
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        {/* CTA Buttons */}
+        <div className="flex items-center gap-3">
           <Link
-            href="/login"
-            className="hidden sm:inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 disabled:pointer-events-none disabled:opacity-50"
+            href="#contact"
+            className="hidden sm:inline-flex h-10 items-center justify-center rounded-full border border-slate-200 bg-white/50 px-5 text-sm font-semibold text-slate-700 backdrop-blur-sm transition-all hover:bg-white hover:border-slate-300 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-200"
           >
-            ログイン
+            資料ダウンロード
           </Link>
           <Link
-            href="/login"
-            className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/20 active:scale-95"
+            href="#contact"
+            className="relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full bg-slate-900 px-6 text-sm font-semibold text-white shadow-lg shadow-slate-900/20 transition-all hover:bg-slate-800 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-slate-900/20 active:scale-95"
           >
-            無料で試す
+            <span className="relative z-10">無料デモ</span>
+            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-0 transition-opacity duration-300 hover:opacity-20" />
           </Link>
         </div>
       </div>
     </header>
   );
 }
-
